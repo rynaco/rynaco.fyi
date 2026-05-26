@@ -3,13 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>rynaco.fyi</title>
+  <title>Ryan Robinson</title>
 
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
   <link rel="manifest" href="/assets/site.webmanifest" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" />
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -18,10 +22,12 @@
       --bg: #0d0d0d;
       --fg: #e8e8e8;
       --muted: #666;
+      --dim: #444;
+      --subtle: #1e1e1e;
     }
 
     html, body {
-      height: 100%;
+      min-height: 100%;
     }
 
     body {
@@ -31,31 +37,184 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      padding: 64px 24px;
     }
 
     main {
-      text-align: center;
+      max-width: 520px;
+      width: 100%;
     }
 
     h1 {
-      font-size: clamp(2rem, 6vw, 4rem);
-      font-weight: 300;
-      letter-spacing: 0.04em;
+      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 500;
+      letter-spacing: -0.02em;
       color: var(--fg);
+      margin-bottom: 10px;
     }
 
-    p {
-      margin-top: 0.75rem;
-      font-size: 1rem;
+    .cursor {
+      display: inline-block;
+      width: 0.55em;
+      height: 1em;
+      vertical-align: -0.12em;
+      margin-left: 0.08em;
+      background: var(--fg);
+      opacity: 0.9;
+      animation: blink 0.55s step-end infinite;
+      transition: opacity 0.45s ease;
+    }
+
+    .cursor.fade {
+      opacity: 0;
+      animation: none;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .cursor { display: none; }
+    }
+
+    .meta {
+      font-size: 0.8rem;
       color: var(--muted);
-      letter-spacing: 0.02em;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 36px;
+    }
+
+    .meta span {
+      margin: 0 8px;
+      color: var(--dim);
+    }
+
+    .bio {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: #aaa;
+      margin-bottom: 40px;
+    }
+
+    .bio p + p {
+      margin-top: 18px;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--subtle);
+      margin-bottom: 28px;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--dim);
+      margin-bottom: 14px;
+    }
+
+    .list {
+      list-style: none;
+      margin-bottom: 40px;
+    }
+
+    .list li {
+      font-size: 0.88rem;
+      color: #999;
+      margin-bottom: 8px;
+      padding-left: 14px;
+      position: relative;
+    }
+
+    .list li::before {
+      content: "·";
+      position: absolute;
+      left: 0;
+      color: var(--dim);
+    }
+
+    .links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .links a {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid var(--subtle);
+      padding-bottom: 2px;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .links a:hover {
+      color: var(--fg);
+      border-color: var(--dim);
     }
   </style>
 </head>
 <body>
   <main>
-    <h1>rynaco.fyi</h1>
-    <p>coming soon</p>
+    <h1 aria-label="Ryan Robinson"><span class="name-text" data-name="Ryan Robinson" aria-hidden="true"></span><span class="cursor" aria-hidden="true"></span></h1>
+    <p class="meta">operator turned builder <span>·</span> Madrid <span>·</span> open to work</p>
+
+    <div class="bio">
+      <p>With over 10 years at remote-first tech companies, I've moved between managing sales teams, product support, customer success management, and product management (growth, most recently), going deep on each stage of the customer journey. I'm obsessed with making customers happy and uncovering what they actually need, then getting it built.</p>
+      <p>I prefer scrappy and quick. Sitting between sales, customer success, and product, I love to build for the unowned process, the broken handoff, the workflow nobody maintained. I can turn those crazy things that don't scale into repeatable motions for growth. In the last few years, I've gone deep on AI, building agents, integrations, and tools that automate the work we used to coordinate humans through.</p>
+      <p>Originally from California, Spain is now home. Outside of work, I love weightlifting, building physical things (3D printing is consuming me right now), trying out new recipes, and traveling around the world to eat tasty foods.</p>
+      <p>If you want to chat about any of the above, I'm always happy to talk shop.</p>
+    </div>
+
+    <hr />
+
+    <p class="section-label">currently building</p>
+    <ul class="list">
+      <li>AI agents for GTM and CS workflows</li>
+      <li>Thermal receipt printer projects, getting my AI automations onto physically printed media</li>
+      <li>3D printing and design in Autodesk</li>
+      <li>rynaco.fyi, you're looking at it</li>
+    </ul>
+
+    <hr />
+
+    <nav class="links">
+      <a href="https://www.linkedin.com/in/rynaco/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/rynaco" target="_blank" rel="noopener">GitHub</a>
+      <a href="mailto:hi@rynaco.fyi">Email</a>
+    </nav>
   </main>
+
+  <script>
+    (function () {
+      const el = document.querySelector('.name-text');
+      const cursor = document.querySelector('.cursor');
+      if (!el || !cursor) return;
+
+      const name = el.dataset.name || '';
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (reduced) {
+        el.textContent = name;
+        cursor.remove();
+        return;
+      }
+
+      let i = 0;
+      function step() {
+        if (i < name.length) {
+          el.textContent += name[i++];
+          setTimeout(step, 70 + Math.random() * 14);
+        } else {
+          setTimeout(() => cursor.classList.add('fade'), 1100);
+        }
+      }
+      setTimeout(step, 320);
+    })();
+  </script>
 </body>
 </html>
